@@ -1,4 +1,6 @@
 .card-wrapper {
+    padding: 12px;
+    border-radius: 28px;
     margin: auto;
     margin-bottom: 32px;
     background-color: #1D1C1C;
