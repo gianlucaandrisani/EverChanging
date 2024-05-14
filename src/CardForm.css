@@ -1,0 +1,31 @@
+.card-form {
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+    background-color: #1413129e;
+    backdrop-filter: blur(32px) !important;
+    -webkit-backdrop-filter: blur(32px) !important;
+    height: 160px;
+    width: 100%;
+    left: 0;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 60px;
+    border: 0.5px solid #2F2E2E;
+}
+
+/* @supports (backdrop-filter: blur(32px)) {
+    .card-form {
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+        background-color: #141312;
+    }
+} */
+
+.form-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}

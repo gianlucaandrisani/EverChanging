@@ -1,0 +1,44 @@
+.card-wrapper {
+    border-radius: 28px;
+    padding: 12px;
+    margin: auto;
+    margin-bottom: 32px;
+    background-color: #1D1C1C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 324px;
+    height: 324px;
+    position: relative;
+}
+
+.card-wrapperlast-child {
+    z-index: 1;
+    /* Ensure newer cards are visually stacked on top */
+}
+
+.card {
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+    background-color: #232224;
+    color: white;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.card-title {
+    font-size: 18px;
+    line-height: 22px;
+    color: white;
+    margin-bottom: 12px;
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.card-description {
+    font-size: 14px;
+    line-height: 18px;
+    color: #D3D3D3;
+}

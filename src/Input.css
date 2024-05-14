@@ -1,0 +1,35 @@
+/* Input.css */
+.input {
+    padding: 6px;
+    width: 100%;
+    /* accounts for padding and border */
+    background-color: transparent;
+    border: none;
+    color: #7E7E7E;
+    /* Default text color */
+    font-size: 14px;
+    /* Default font size */
+    box-sizing: border-box;
+}
+
+.input-title {
+    font-size: 18px;
+    /* Larger font size for title input */
+}
+
+.input-value {
+    color: white;
+    /* Text color when input has content */
+}
+
+/* CSS */
+.input-no-focus:focus {
+    outline: none !important;
+    border: none;
+    /* Remove default focus outline */
+    /* Add any additional styling for the input in focus state if needed */
+}
+
+.input:focus {
+    outline: none;
+}
