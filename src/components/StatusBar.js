@@ -9,7 +9,7 @@ import ActiveIcon from '../icons/Active.svg';
 import CompletedIcon from '../icons/Completed.svg';
 import useOutsideAlerter from './useOutsideAlerter'; // Import the useOutsideAlerter hook
 
-const StatusBar = ({ onAddTask }) => {
+const StatusBar = ({ tasks, onAddTask }) => {
   const [showForm, setShowForm] = useState(false);
   const cardFormRef = useRef(null); // Create a ref for the CardForm element
 
@@ -27,10 +27,12 @@ const StatusBar = ({ onAddTask }) => {
     setShowForm(false); // Hide the form after submitting
   };
 
+  const activeTasks = tasks ? tasks.filter(task => !task.completed).length : 0;
+
   return (
     <div className="status-bar">
       <div className="tabs">
-        <Tab text={'12 Active'} icon={ActiveIcon} className="active" />
+        <Tab text={`${activeTasks} Active`} icon={ActiveIcon} className="active" />
         <Tab text={'Completed'} icon={CompletedIcon} className="" />
       </div>
       <svg width="2" height="18" viewBox="0 0 2 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,8 +40,8 @@ const StatusBar = ({ onAddTask }) => {
       </svg>
       <Button text={''} onClick={handleAddTaskClick} icon={addIcon} />
       {showForm && (
-        <div ref={cardFormRef}> {/* Pass the ref to the CardForm */}
-          <CardForm onSubmit={handleSubmitTask} />
+        <div ref={cardFormRef} className="form-container"> {/* Pass the ref to the CardForm */}
+          <CardForm onSubmit={handleSubmitTask}/>
         </div>
       )}
     </div>
@@ -47,6 +49,7 @@ const StatusBar = ({ onAddTask }) => {
 };
 
 StatusBar.propTypes = {
+  tasks: PropTypes.array.isRequired,
   onAddTask: PropTypes.func.isRequired,
 };
 

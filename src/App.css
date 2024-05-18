@@ -10,11 +10,11 @@ html {
 
 body {
   background-color: #141312;
-  margin: 0;
+  margin: auto;
   /* Reset default margin */
 }
 
-.app-container {
+/* .app-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -27,9 +27,9 @@ body {
   overflow-y: auto;
   position: relative;
   padding-bottom: 16px;
-}
+} */
 
-.app-container::-webkit-scrollbar {
+body::-webkit-scrollbar {
   /* For Chrome, Safari, etc. */
   width: 0px;
   /* Hide horizontal scrollbar */
@@ -52,4 +52,7 @@ body {
 
 .task-list {
   margin-top: 120px;
+  margin: auto;
+  margin-top: 32px;
+  margin-bottom: 128px;
 }
