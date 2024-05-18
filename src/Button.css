@@ -12,12 +12,6 @@
     border: 0.5px solid transparent
 }
 
-.button.secondary {
-    padding: 4px;
-    border-radius: 8px;
-    background-color: #282726e0;
-}
-
 .button:hover {
     background-color: #28272687;
     border: 0.5px solid #2F2E2E;
@@ -33,4 +27,36 @@
     background-color: #eee;
     color: #666;
     cursor: not-allowed;
+}
+
+.button.secondary {
+    padding: 4px;
+    border-radius: 8px;
+    background-color: #282726e0;
+    transition: all 0.3s;
+}
+
+.button.secondary:hover {
+    padding: 4px;
+    border-radius: 8px;
+    background-color: #282726;
+    border: 0.5px solid #4A4A4A;
+}
+
+.button.secondary:disabled {
+    /* padding: 4px;
+    border-radius: 8px;
+    background-color: #28272627; */
+    opacity: 20%;
+}
+
+.button.link {
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.button.link:hover {
+    padding: 4px;
+    border-radius: 8px;
+    background-color: #282726e0;
 }
