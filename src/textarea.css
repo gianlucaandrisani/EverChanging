@@ -1,8 +1,7 @@
 /* Input.css */
 .textarea {
-    padding: 8px;
+    /* padding: 8px; */
     width: 100%;
-    height: 90px;
     resize: none;
     background-color: transparent;
     border: none;
@@ -10,6 +9,7 @@
     font-size: 14px;
     box-sizing: border-box;
     font-family: Inter;
+    height: 64px;
 }
 
 .textarea:focus {
@@ -17,4 +17,12 @@
     outline: none !important;
     border: none;
     /* Text color when input has content */
+}
+
+.textarea::-webkit-scrollbar {
+    /* For Chrome, Safari, etc. */
+    width: 0px;
+    /* Hide horizontal scrollbar */
+    height: 0px;
+    /* Hide vertical scrollbar */
 }

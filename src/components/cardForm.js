@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input'; // Import the Input component
-import '../CardForm.css';
 import Button from './Button';
+import DatePicker from 'react-datepicker';
 import arrowIcon from '../icons/ArrowUp.svg';
+import 'react-datepicker/dist/react-datepicker.css'; // Import default styles
+import '../CardForm.css';
 import '../textarea.css';
+import '../datePicker.css'; // Import your custom styles
 
 const CardForm = ({ onSubmit }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [dueDate, setDueDate] = useState(null);
   const [isTitleFilled, setIsTitleFilled] = useState(false); // Track if title is filled
 
   const handleTitleChange = (event) => {
@@ -21,11 +25,17 @@ const CardForm = ({ onSubmit }) => {
     setDescription(event.target.value);
   };
 
+  const handleDueDateChange = (date) => {
+    setDueDate(date);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(title, description);
+    const formattedDueDate = dueDate ? `${dueDate.getDate()}/${dueDate.getMonth() + 1}` : '';
+    onSubmit(title, description, formattedDueDate); // Pass due date along with title and description
     setTitle(''); // Clear title input
     setDescription(''); // Clear description input
+    setDueDate(null); // Clear due date input
     setIsTitleFilled(false); // Reset isTitleFilled
   };
 
@@ -48,6 +58,14 @@ const CardForm = ({ onSubmit }) => {
         onChange={handleDescriptionChange}
         placeholder="Description"
       />
+      <div className="date-container">
+        <DatePicker
+          selected={dueDate}
+          onChange={handleDueDateChange}
+          dateFormat="dd/MM"
+          placeholderText="dd/mm"
+        />
+      </div>
     </div>
   );
 };

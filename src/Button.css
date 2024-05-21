@@ -9,7 +9,8 @@
     transition: background-color 0.3s;
     background: none;
     border-radius: 32px;
-    border: 0.5px solid transparent
+    border: 0.5px solid transparent;
+    color: white;
 }
 
 .button:hover {
@@ -26,7 +27,6 @@
 .button:disabled {
     background-color: #eee;
     color: #666;
-    cursor: not-allowed;
 }
 
 .button.secondary {
@@ -47,6 +47,27 @@
     /* padding: 4px;
     border-radius: 8px;
     background-color: #28272627; */
+    opacity: 20%;
+}
+
+.button.special {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #282726e0;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.button.special:hover {
+    border-radius: 8px;
+    background-color: #2e2d2b;
+}
+
+.button.special:disabled {
     opacity: 20%;
 }
 

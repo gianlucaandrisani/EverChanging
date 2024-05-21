@@ -1,3 +1,4 @@
+// StatusBar.jsx
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../StatusBar.css';
@@ -22,8 +23,8 @@ const StatusBar = ({ tasks, onAddTask }) => {
     setShowForm(true);
   };
 
-  const handleSubmitTask = (title, description) => {
-    onAddTask(title, description); // Call the prop function with task details
+  const handleSubmitTask = (title, description, dueDate) => {
+    onAddTask(title, description, dueDate); // Call the prop function with task details
     setShowForm(false); // Hide the form after submitting
   };
 
