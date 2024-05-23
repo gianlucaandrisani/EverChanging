@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import StatusBar from './components/StatusBar';
 import Card from './components/card';
@@ -7,13 +7,33 @@ import EmpyStateImage from './icons/EmptyState.svg';
 const App = () => {
   const [tasks, setTasks] = useState([]);
 
-  const handleAddTask = (title, description) => {
-    const newTask = { title, description, completed: false };
+  // Load tasks from localStorage when the component mounts
+  useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
+  // Save tasks to localStorage whenever tasks change
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
+  const handleAddTask = (title, description, dueDate) => {
+    const newTask = { title, description, dueDate, completed: false };
     setTasks([...tasks, newTask]);
   };
 
   const handleDeleteTask = (index) => {
-    const newTasks = tasks.filter((_ , i) => i !== index); 
+    const newTasks = tasks.filter((_, i) => i !== index);
+    setTasks(newTasks);
+  };
+
+  const handleUpdateTask = (index, newTitle, newContent, newDueDate) => {
+    const newTasks = tasks.map((task, i) => 
+      i === index ? { ...task, title: newTitle, description: newContent, dueDate: newDueDate } : task
+    );
     setTasks(newTasks);
   };
 
@@ -27,12 +47,13 @@ const App = () => {
       ) : (
         <div className="task-list">
           {tasks.map((task, index) => (
-            <Card 
-              key={index} 
-              index={index}
-              title={task.title} 
-              content={task.description} 
-              onDelete={() => handleDeleteTask(index)} 
+            <Card
+              key={index}
+              title={task.title}
+              content={task.description}
+              dueDate={task.dueDate}
+              onDelete={() => handleDeleteTask(index)}
+              onUpdate={(newTitle, newContent, newDueDate) => handleUpdateTask(index, newTitle, newContent, newDueDate)}
             />
           ))}
         </div>
