@@ -44,13 +44,10 @@
 @media (max-width: 576px) {
     .status-bar {
         flex-wrap: wrap;
-        /* Allow wrapping on small screens */
         padding: 8px 12px;
-        /* Adjust padding for small screens */
     }
 
     .tab {
         padding: 2px 6px;
-        /* Adjust padding for small screens */
     }
 }

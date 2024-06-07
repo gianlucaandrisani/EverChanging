@@ -1,34 +1,25 @@
-/* Input.css */
 .input {
-    /* padding: 8px; */
     width: 100%;
-    /* accounts for padding and border */
     background-color: transparent;
     border: none;
     color: #7E7E7E;
-    /* Default text color */
     font-size: 14px;
-    /* Default font size */
     box-sizing: border-box;
 }
 
 .input-title {
     font-size: 18px;
     font-weight: 500;
-    /* Larger font size for title input */
 }
 
 .input-value {
     color: white;
-    /* Text color when input has content */
 }
 
 /* CSS */
 .input-no-focus:focus {
     outline: none !important;
     border: none;
-    /* Remove default focus outline */
-    /* Add any additional styling for the input in focus state if needed */
 }
 
 .input:focus {
@@ -47,13 +38,7 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-/* input[type="checkbox"]:checked {
-    background-color: #555555 !important;
-    border-color: #555555;
-} */
-
 input[type="checkbox"]:checked {
-    /* Add a custom checked state style */
     background-image: url('./icons/check.svg');
     background-size: 16px 16px;
     background-position: center;

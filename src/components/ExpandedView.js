@@ -5,7 +5,7 @@ import deleteIcon from '../icons/delete.svg';
 import saveIcon from '../icons/Edit.svg';
 import arrowRight from '../icons/ArrowRight.svg';
 import '../ExpandedView.css';
-import { marked } from 'marked';
+// import { marked } from 'marked';
 import Input from './Input';
 import "../textarea.css";
 import DatePicker from 'react-datepicker';
