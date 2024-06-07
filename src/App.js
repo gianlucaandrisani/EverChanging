@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import StatusBar from './components/StatusBar';
-import Card from './components/Card';
+import Card from './components/Cardv1';
 import ExpandedView from './components/ExpandedView';
 import EmpyStateImage from './icons/EmptyState.svg';
 import { v4 as uuidv4 } from 'uuid';
