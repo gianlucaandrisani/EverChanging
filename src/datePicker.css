@@ -13,7 +13,7 @@
     font-size: 12px;
     line-height: 16px;
     color: #CACACA;
-    background-color: #282726e0;
+    background-color: #2A2A2A;
     font-weight: 500;
     border: none;
     width: 40px;
@@ -35,7 +35,7 @@
     gap: 4px;
     display: flex;
     flex-direction: column;
-    background-color: #282726e0;
+    background-color: #2A2A2A;
     backdrop-filter: blur(32px);
     border: none;
 }
