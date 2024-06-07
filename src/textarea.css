@@ -5,7 +5,7 @@
     resize: none;
     background-color: transparent;
     border: none;
-    color: #7E7E7E;
+    color: white;
     font-size: 14px;
     box-sizing: border-box;
     font-family: Inter;
@@ -20,6 +20,65 @@
 }
 
 .textarea::-webkit-scrollbar {
+    /* For Chrome, Safari, etc. */
+    width: 0px;
+    /* Hide horizontal scrollbar */
+    height: 0px;
+    /* Hide vertical scrollbar */
+}
+
+.textarea-form {
+    /* padding: 8px; */
+    width: 100%;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    color: #7E7E7E;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-family: Inter;
+    height: 292px;
+    white-space: pre-wrap;
+    direction: ltr;
+}
+
+.textarea-form:focus {
+    color: white;
+    outline: none !important;
+    border: none;
+    /* Text color when input has content */
+}
+
+.textarea-form::-webkit-scrollbar {
+    /* For Chrome, Safari, etc. */
+    width: 0px;
+    /* Hide horizontal scrollbar */
+    height: 0px;
+    /* Hide vertical scrollbar */
+}
+
+.textarea-edit {
+    width: 100%;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-family: Inter;
+    height: 91%;
+    white-space: pre-wrap;
+    direction: ltr;
+}
+
+.textarea-edit:focus {
+    color: white;
+    outline: none !important;
+    border: none;
+    /* Text color when input has content */
+}
+
+.textarea-edit::-webkit-scrollbar {
     /* For Chrome, Safari, etc. */
     width: 0px;
     /* Hide horizontal scrollbar */

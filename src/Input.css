@@ -14,6 +14,7 @@
 
 .input-title {
     font-size: 18px;
+    font-weight: 500;
     /* Larger font size for title input */
 }
 
@@ -32,4 +33,30 @@
 
 .input:focus {
     outline: none;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 16px;
+    height: 16px;
+    border: 1px solid #CACACA;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* input[type="checkbox"]:checked {
+    background-color: #555555 !important;
+    border-color: #555555;
+} */
+
+input[type="checkbox"]:checked {
+    /* Add a custom checked state style */
+    background-image: url('./icons/check.svg');
+    background-size: 16px 16px;
+    background-position: center;
+    background-color: transparent;
+    border-color: #555555;
 }

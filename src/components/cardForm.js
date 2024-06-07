@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input'; // Import the Input component
 import Button from './Button';
@@ -14,6 +14,7 @@ const CardForm = ({ onSubmit }) => {
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState(null);
   const [isTitleFilled, setIsTitleFilled] = useState(false); // Track if title is filled
+  const textAreaRef = useRef(null);
 
   const handleTitleChange = (event) => {
     const newTitle = event.target.value;
@@ -39,6 +40,40 @@ const CardForm = ({ onSubmit }) => {
     setIsTitleFilled(false); // Reset isTitleFilled
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === ' ' && textAreaRef.current.value.endsWith('-')) {
+      event.preventDefault();
+      const cursorPosition = textAreaRef.current.selectionStart;
+      const newText = `${textAreaRef.current.value.slice(0, cursorPosition - 1)}• ${textAreaRef.current.value.slice(cursorPosition)}`;
+      setDescription(newText);
+      setTimeout(() => {
+        textAreaRef.current.selectionStart = textAreaRef.current.selectionEnd = cursorPosition + 1;
+      }, 0);
+    } else if ((event.metaKey || event.ctrlKey) && event.key === 'b') {
+      event.preventDefault();
+      const { selectionStart, selectionEnd } = textAreaRef.current;
+      const selectedText = textAreaRef.current.value.slice(selectionStart, selectionEnd);
+      const newText = `${textAreaRef.current.value.slice(0, selectionStart)}<b>${selectedText}</b>${textAreaRef.current.value.slice(selectionEnd)}`;
+      setDescription(newText);
+      setTimeout(() => {
+        textAreaRef.current.selectionStart = selectionStart;
+        textAreaRef.current.selectionEnd = selectionEnd + 7; // 7 characters added for <b></b>
+      }, 0);
+    }
+  };
+
+  useEffect(() => {
+    const textArea = textAreaRef.current;
+    if (textArea) {
+      textArea.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      if (textArea) {
+        textArea.removeEventListener('keydown', handleKeyDown);
+      }
+    };
+  }, []);
+
   return (
     <div className="card-form">
       <form onSubmit={handleSubmit} className="form-header">
@@ -52,8 +87,8 @@ const CardForm = ({ onSubmit }) => {
         <Button icon={arrowIcon} className="secondary" disabled={!isTitleFilled} /> {/* Disable button if title is not filled */}
       </form>
       <textarea
-        className="textarea"
-        type="text"
+        ref={textAreaRef}
+        className="textarea-form"
         value={description}
         onChange={handleDescriptionChange}
         placeholder="Description"

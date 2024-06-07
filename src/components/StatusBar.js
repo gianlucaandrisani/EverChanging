@@ -1,4 +1,3 @@
-// StatusBar.jsx
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../StatusBar.css';
@@ -8,15 +7,15 @@ import CardForm from './cardForm';
 import Tab from './tab';
 import ActiveIcon from '../icons/Active.svg';
 import CompletedIcon from '../icons/Completed.svg';
-import useOutsideAlerter from './useOutsideAlerter'; // Import the useOutsideAlerter hook
+import useOutsideAlerter from './useOutsideAlerter';
 
-const StatusBar = ({ tasks, onAddTask }) => {
+const StatusBar = ({ tasks, onAddTask, setView }) => {
   const [showForm, setShowForm] = useState(false);
-  const cardFormRef = useRef(null); // Create a ref for the CardForm element
+  const [activeTab, setActiveTab] = useState('active');
+  const cardFormRef = useRef(null);
 
-  // Call the useOutsideAlerter hook
   useOutsideAlerter(cardFormRef, () => {
-    setShowForm(false); // Close the form when clicked outside
+    setShowForm(false);
   });
 
   const handleAddTaskClick = () => {
@@ -24,17 +23,33 @@ const StatusBar = ({ tasks, onAddTask }) => {
   };
 
   const handleSubmitTask = (title, description, dueDate) => {
-    onAddTask(title, description, dueDate); // Call the prop function with task details
-    setShowForm(false); // Hide the form after submitting
+    onAddTask(title, description, dueDate);
+    setShowForm(false);
   };
 
-  const activeTasks = tasks ? tasks.filter(task => !task.completed).length : 0;
+  const handleTabClick = (view) => {
+    setView(view);
+    setActiveTab(view);
+  };
+
+  const activeTasks = tasks.filter(task => !task.completed).length;
+  const completedTasks = tasks.filter(task => task.completed).length;
 
   return (
     <div className="status-bar">
       <div className="tabs">
-        <Tab text={`${activeTasks} Active`} icon={ActiveIcon} className="active" />
-        <Tab text={'Completed'} icon={CompletedIcon} className="" />
+        <Tab
+          text={`${activeTasks} Active`}
+          icon={ActiveIcon}
+          className={activeTab === 'active' ? 'active' : ''}
+          onClick={() => handleTabClick('active')}
+        />
+        <Tab
+          text={`${completedTasks} Completed`}
+          icon={CompletedIcon}
+          className={activeTab === 'completed' ? 'active' : ''}
+          onClick={() => handleTabClick('completed')}
+        />
       </div>
       <svg width="2" height="18" viewBox="0 0 2 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1V17" stroke="#2F2E2E" strokeWidth="1.5" strokeLinecap="round" />
@@ -52,6 +67,7 @@ const StatusBar = ({ tasks, onAddTask }) => {
 StatusBar.propTypes = {
   tasks: PropTypes.array.isRequired,
   onAddTask: PropTypes.func.isRequired,
+  setView: PropTypes.func.isRequired, // Add setView to propTypes
 };
 
 export default StatusBar;
