@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { parse } from 'date-fns';
+// import { parse } from 'date-fns';
 import '../Card.css';
 import Button from './Button';
 import deleteIcon from '../icons/delete.svg';
@@ -8,7 +8,6 @@ import arrowRight from '../icons/ArrowRight.svg';
 import openIcon from '../icons/Edit.svg'; // Placeholder for open button
 
 const Card = ({ title, content, dueDate, completed, onDelete, onToggleComplete, onOpen }) => {
-  const parsedDueDate = dueDate ? parse(dueDate, 'dd/MM', new Date()) : null;
 
   return (
     <div className="card">
