@@ -11,6 +11,8 @@
     border-radius: 32px;
     border: 0.5px solid transparent;
     color: white;
+    font-size: 12px;
+    line-height: 20px;
 }
 
 .button:hover {
@@ -34,6 +36,8 @@
     border-radius: 8px;
     background-color: #282726e0;
     transition: all 0.3s;
+    font-size: 12px;
+    line-height: 20px;
 }
 
 .button.secondary:hover {
@@ -50,34 +54,66 @@
     opacity: 20%;
 }
 
-.button.special {
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #282726e0;
-    transition: all 0.2s;
-    font-size: 14px;
-}
-
-.button.special:hover {
-    border-radius: 8px;
-    background-color: #2e2d2b;
-}
-
-.button.special:disabled {
-    opacity: 20%;
-}
-
 .button.link {
     padding: 4px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    height: fit-content;
+    font-size: 12px;
+    line-height: 20px;
 }
 
 .button.link:hover {
     padding: 4px;
     border-radius: 8px;
     background-color: #282726e0;
+}
+
+.button.no-bg {
+    background-color: transparent;
+    padding: 4px;
+    border: none;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+button.action {
+    padding: 4px 8px;
+    border-radius: 8px;
+    background-color: #F5F5F5;
+    color: #4f4f4f;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+}
+
+button.action:hover {
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: none;
+    background-color: white;
+    color: #4f4f4f;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+}
+
+button.action-nobg {
+    padding: 4px 8px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    color: white;
+    border: none;
+}
+
+button.action-nobg:hover {
+    padding: 4px 8px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    color: white;
+    border: none;
 }

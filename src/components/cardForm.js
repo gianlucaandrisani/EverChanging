@@ -86,6 +86,12 @@ const CardForm = ({ onSubmit }) => {
         />
         <Button icon={arrowIcon} className="secondary" disabled={!isTitleFilled} /> {/* Disable button if title is not filled */}
       </form>
+        <DatePicker
+            selected={dueDate}
+            onChange={handleDueDateChange}
+            dateFormat="dd/MM"
+            placeholderText="dd/mm"
+          />
       <textarea
         ref={textAreaRef}
         className="textarea-form"
@@ -93,14 +99,6 @@ const CardForm = ({ onSubmit }) => {
         onChange={handleDescriptionChange}
         placeholder="Description"
       />
-      <div className="date-container">
-        <DatePicker
-          selected={dueDate}
-          onChange={handleDueDateChange}
-          dateFormat="dd/MM"
-          placeholderText="dd/mm"
-        />
-      </div>
     </div>
   );
 };
