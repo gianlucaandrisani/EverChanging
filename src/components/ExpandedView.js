@@ -2,22 +2,26 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import deleteIcon from '../icons/delete.svg';
-import saveIcon from '../icons/Edit.svg';
+import saveIcon from '../icons/Save.svg';
 import arrowRight from '../icons/ArrowRight.svg';
 import '../ExpandedView.css';
-// import { marked } from 'marked';
 import Input from './Input';
 import "../textarea.css";
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import CloseIcon from '../icons/Close.svg';
+import { parse, format, isValid } from 'date-fns';
 
-const ExpandedView = ({ task, onClose, onDelete, onUpdate, onToggleComplete }) => {
+const ExpandedView = ({ task, onClose, onDelete, onUpdate, onToggleComplete, completed }) => {
   const [editTitle, setEditTitle] = useState(task.title);
   const [editContent, setEditContent] = useState(task.description); // Ensure description is used
-  const [editDueDate, setEditDueDate] = useState(task.dueDate);
+  const initialDate = task.dueDate ? parse(task.dueDate, 'dd/MM', new Date()) : null;
+  const [editDueDate, setEditDueDate] = useState(isValid(initialDate) ? initialDate : null);
   const textAreaRef = useRef(null);
 
   const handleSaveClick = () => {
-    onUpdate(task.id, editTitle, editContent, editDueDate);
+    const formattedDueDate = editDueDate ? format(editDueDate, 'dd/MM') : '';
+    onUpdate(task.id, editTitle, editContent, formattedDueDate);
     onClose();
   };
 
@@ -57,9 +61,9 @@ const ExpandedView = ({ task, onClose, onDelete, onUpdate, onToggleComplete }) =
 
   return (
     <div className="wrapper">
-    <div className="expanded-view">
-    <Button text="Close" onClick={onClose} />
-      <div className="expanded-header">
+      <div className="expanded-view">
+        <div className="header-and-close">
+          <div className="expanded-header">
             <Input
               type="text"
               value={editTitle}
@@ -72,25 +76,27 @@ const ExpandedView = ({ task, onClose, onDelete, onUpdate, onToggleComplete }) =
               onChange={(date) => setEditDueDate(date)}
               dateFormat="dd/MM"
               placeholderText="dd/mm"
-              isClearable
             />
-      </div>
-      <textarea
-              value={editContent}
-              ref={textAreaRef}
-              onChange={(e) => setEditContent(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Description"
-              className="textarea-edit"
-            />
-      <div className='footer'>
-        <div className="expanded-actions">
-            <Button icon={saveIcon} className="secondary" onClick={handleSaveClick} />
-            <Button icon={deleteIcon} className="secondary" onClick={() => { onDelete(task.id); onClose(); }} />
-            <Button icon={arrowRight} className="secondary" onClick={onToggleComplete} />
+          </div>
+          <Button onClick={onClose} className="no-bg" icon={CloseIcon}/>
+        </div>
+        <textarea
+          value={editContent}
+          ref={textAreaRef}
+          onChange={(e) => setEditContent(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Description"
+          className="textarea-edit"
+        />
+        <div className='footer'>
+          <label className="checkbox-label">
+            Mark as completed
+            <input type="checkbox" checked={completed} onChange={onToggleComplete} />
+          </label>
+          <Button text="Delete" className="action-nobg" onClick={() => { onDelete(task.id); onClose(); }} />
+          <Button text="Save" className="action" onClick={handleSaveClick} />
         </div>
       </div>
-    </div>
     </div>
   );
 };

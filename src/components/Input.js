@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../Input.css'; // Import the CSS file
 
-const Input = ({ type, value, onChange, placeholder, variant }) => {
+const Input = ({ type, value, onChange, placeholder, variant, label }) => {
   // Define classes based on the variant and value
   const inputClasses = ['input'];
   if (variant === 'title') {
@@ -20,6 +20,7 @@ const Input = ({ type, value, onChange, placeholder, variant }) => {
       value={value}
       onChange={onChange}
       placeholder={placeholder}
+      label='something'
     />
   );
 };
