@@ -6,6 +6,7 @@ import Button from './Button';
 import deleteIcon from '../icons/delete.svg';
 import arrowRight from '../icons/ArrowRight.svg';
 import openIcon from '../icons/Edit.svg'; // Placeholder for open button
+import { convertFromMarkdown, convertToMarkdown } from '../utils/markdownUtils';
 
 const Card = ({ title, content, dueDate, completed, onDelete, onToggleComplete, onOpen }) => {
 
@@ -22,7 +23,7 @@ const Card = ({ title, content, dueDate, completed, onDelete, onToggleComplete, 
               <input type="checkbox" checked={completed} onChange={onToggleComplete} />
             </div>
           </div>
-          {content && <p className="card-description">{content}</p>}
+          {content && <div className="card-description" dangerouslySetInnerHTML={{ __html: convertFromMarkdown(content) }} />}
         </div>
         <div className='date-wrapper'>
           {dueDate && (
